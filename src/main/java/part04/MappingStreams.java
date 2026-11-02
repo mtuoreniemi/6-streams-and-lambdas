@@ -3,6 +3,7 @@ package part04;
 import java.util.List;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
+import java.util.function.Function; 
 
 /**
  * In this class, you will learn how to use the map() method to transform the
@@ -109,15 +110,24 @@ public class MappingStreams {
      * should not be changed.
      *
      * @param strings a stream of strings
-     * @param suffix  the substring to remove from the end of each string
+     * @param loppupaate  the substring to remove from the end of each string
      * @return a stream of strings with the suffix removed
      */
-    public Stream<String> removeSuffix(Stream<String> strings, String suffix) {
+    public Stream<String> removeSuffix(Stream<String> merkkijonot, String loppupaate) {
         /*
          * hint: If your expression is too complex, you can define a separate method
          * that you call from the lambda expression.
          */
-        return null; // TODO
+
+        // löytyy funktion niminen käsite jota voidaaan hyödyntää kun 
+        // luodaan uusi metodi
+        Function<String, String> poista = merkkijono -> {
+            if(!merkkijono.endsWith(loppupaate)) {
+                return merkkijono;
+            }
+            return merkkijono.substring(0, merkkijono.length() - loppupaate.length());
+        }
+        return merkkijonot.map(poista);
     }
 
     /**

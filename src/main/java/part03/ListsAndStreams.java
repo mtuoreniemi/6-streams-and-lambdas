@@ -1,6 +1,7 @@
 package part03;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -32,7 +33,8 @@ public class ListsAndStreams {
      * @return a List of the same strings
      */
     public List<String> makeList(Stream<String> stream) {
-        return null; // TODO
+
+        return stream.collect(Collectors.toList());
     }
 
     /**
@@ -47,7 +49,7 @@ public class ListsAndStreams {
     public Stream<String> streamWithLimit(List<String> strings, int count) {
         // TODO: check the documentation of Stream!
         // If you want, you can utilize the 'makeStream()' method you implemented above.
-        return null;
+        return makeStream(strings).limit(count);
     }
 
 }
