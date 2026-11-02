@@ -22,7 +22,7 @@ public class ListsAndStreams {
         /*
          * hint: see the documentation of List about how to create a Stream from a List.
          */
-        return null; // TODO
+        return strings.stream(); 
     }
 
     /**
