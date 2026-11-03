@@ -3,7 +3,7 @@ package part04;
 import java.util.List;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
-import java.util.function.Function; 
+import java.util.function.Function;
 
 /**
  * In this class, you will learn how to use the map() method to transform the
@@ -36,7 +36,7 @@ public class MappingStreams {
         // Lambda lauseke tarkoittaa että tehdään anonyymi metodi
         // joka saa 0-n parametria ja metodi suoritetaan heti
 
-        return numbers.map(numero -> numero * 2); 
+        return numbers.map(numero -> numero * 2);
     }
 
     /**
@@ -63,7 +63,7 @@ public class MappingStreams {
          * hint: First, use the stream() method to create a Stream<Integer>.
          * Then, use mapToInt() method to convert that to an IntStream.
          */
-        return numbers.stream().mapToInt(Integer:: intValue);
+        return numbers.stream().mapToInt(Integer::intValue);
     }
 
     /**
@@ -81,7 +81,7 @@ public class MappingStreams {
      */
     public Stream<String> prefixAllStrings(Stream<String> strings, String prefix) {
         // hint: once again, use the map() method to add the prefix
-        return null; // TODO
+        return strings.map(string -> prefix + string);
     }
 
     /**
@@ -97,7 +97,7 @@ public class MappingStreams {
      * @return a stream of strings with the suffix added
      */
     public Stream<String> suffixAllStrings(Stream<String> strings, String suffix) {
-        return null; // TODO
+        return strings.map(string -> string + suffix);
     }
 
     /**
@@ -109,8 +109,8 @@ public class MappingStreams {
      * Note that if a string in the stream does not end with the given suffix, it
      * should not be changed.
      *
-     * @param strings a stream of strings
-     * @param loppupaate  the substring to remove from the end of each string
+     * @param strings    a stream of strings
+     * @param loppupaate the substring to remove from the end of each string
      * @return a stream of strings with the suffix removed
      */
     public Stream<String> removeSuffix(Stream<String> merkkijonot, String loppupaate) {
@@ -119,16 +119,16 @@ public class MappingStreams {
          * that you call from the lambda expression.
          */
 
-        // löytyy funktion niminen käsite jota voidaaan hyödyntää kun 
+        // löytyy funktion niminen käsite jota voidaaan hyödyntää kun
         // luodaan uusi metodi
         Function<String, String> poista = merkkijono -> {
-            if(!merkkijono.endsWith(loppupaate)) {
+            if (!merkkijono.endsWith(loppupaate)) {
                 return merkkijono;
             }
             return merkkijono.substring(0, merkkijono.length() - loppupaate.length());
-        }
+        };
         return merkkijonot.map(poista);
-    }
+    };
 
     /**
      * Returns a stream where all the numbers in the given stream are converted to
@@ -151,6 +151,17 @@ public class MappingStreams {
          */
 
         // hint: see the mapToObj() method in IntStream
-        return null; // TODO
+        return numbers.mapToObj(number -> {
+            if (number % 3 == 0 && number % 5 == 0) {
+                return "FizzBuzz";
+            } else if (number % 3 == 0) {
+                return "Fizz";
+            } else if (number % 5 == 0) {
+                return "Buzz";
+            } else {
+                return String.valueOf(number);
+            }
+        });
+
     }
 }
